@@ -65,7 +65,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Board.cs" />
+    <Compile Include="Cell.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Line.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

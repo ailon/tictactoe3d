@@ -88,6 +88,16 @@
 	                        	</Path>
 	                        </Canvas>
 						</HyperlinkButton>
+                        
+                        <Rectangle x:Name="HL_00" Canvas.Left="0" Canvas.Top="0" Width="100" Height="100" IsHitTestVisible="False" Fill="Transparent" Canvas.ZIndex="-100" />
+                        <Rectangle x:Name="HL_01" Canvas.Left="0" Canvas.Top="100" Width="100" Height="100" IsHitTestVisible="False" Fill="Transparent" Canvas.ZIndex="-100" />
+                        <Rectangle x:Name="HL_02" Canvas.Left="0" Canvas.Top="200" Width="100" Height="100" IsHitTestVisible="False" Fill="Transparent" Canvas.ZIndex="-100" />
+                        <Rectangle x:Name="HL_10" Canvas.Left="100" Canvas.Top="0" Width="100" Height="100" IsHitTestVisible="False" Fill="Transparent" Canvas.ZIndex="-100" />
+                        <Rectangle x:Name="HL_11" Canvas.Left="100" Canvas.Top="100" Width="100" Height="100" IsHitTestVisible="False" Fill="Transparent" Canvas.ZIndex="-100" />
+                        <Rectangle x:Name="HL_12" Canvas.Left="100" Canvas.Top="200" Width="100" Height="100" IsHitTestVisible="False" Fill="Transparent" Canvas.ZIndex="-100" />
+                        <Rectangle x:Name="HL_20" Canvas.Left="200" Canvas.Top="0" Width="100" Height="100" IsHitTestVisible="False" Fill="Transparent" Canvas.ZIndex="-100" />
+                        <Rectangle x:Name="HL_21" Canvas.Left="200" Canvas.Top="100" Width="100" Height="100" IsHitTestVisible="False" Fill="Transparent" Canvas.ZIndex="-100" />
+                        <Rectangle x:Name="HL_22" Canvas.Left="200" Canvas.Top="200" Width="100" Height="100" IsHitTestVisible="False" Fill="Transparent" Canvas.ZIndex="-100" />
                     </Canvas>
                 </ControlTemplate>
             </Setter.Value>
