@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,6 +30,7 @@ namespace TicTacToe3D
             ScoreX.Text = "0";
             ScoreY.Text = "0";
             GameOver.Visibility = Visibility.Collapsed;
+            CompletedLines.Clear();
         }
 
         public static int[, ,] Cells;
@@ -37,6 +39,7 @@ namespace TicTacToe3D
         public static TextBlock ScoreY;
         public static TextBlock GameOver;
         public static Storyboard FinalAnim;
+        public static List<WinningLine> CompletedLines = new List<WinningLine>();
         
         public static bool Move(int plane, int column, int row, int fig)
         {
@@ -63,7 +66,15 @@ namespace TicTacToe3D
                     Boards[plane].BC.Children.Add(el);
                 }
                 
-                CountLines();
+                var lines = CountLines();
+                foreach (WinningLine wl in lines)
+                {
+                    Color color = Cells[wl.Cell1.Plane, wl.Cell1.Column, wl.Cell1.Row] == 1 ? Colors.Yellow : Colors.Green;
+                    color.A = 50;
+                    Boards[wl.Cell1.Plane].HighlightCell(wl.Cell1.Column, wl.Cell1.Row, color);
+                    Boards[wl.Cell2.Plane].HighlightCell(wl.Cell2.Column, wl.Cell2.Row, color);
+                    Boards[wl.Cell3.Plane].HighlightCell(wl.Cell3.Column, wl.Cell3.Row, color);
+                }
 
                 if (IsFinished)
                 {
@@ -256,8 +267,32 @@ namespace TicTacToe3D
             while (!Move(rnd.Next(3), rnd.Next(3), rnd.Next(3), 2)) { }
         }
 
-        static void CountLines()
+        static List<WinningLine> newCompletedLines = new List<WinningLine>();
+        static void AddNewCompletedLine(int cellContent, WinningLine line)
         {
+            if (!CompletedLines.Contains(line) && cellContent > 0)
+            {
+                newCompletedLines.Add(line);
+            }
+        }
+
+        static int CheckCells(Cell cell1, Cell cell2, Cell cell3)
+        {
+            if (Cells[cell1.Plane, cell1.Column, cell1.Row] == Cells[cell2.Plane, cell2.Column, cell2.Row]
+                && Cells[cell1.Plane, cell1.Column, cell1.Row] == Cells[cell3.Plane, cell3.Column, cell3.Row])
+            {
+                AddNewCompletedLine(Cells[cell1.Plane, cell1.Column, cell1.Row], new WinningLine(cell1, cell2, cell3));
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        static List<WinningLine> CountLines()
+        {
+            newCompletedLines.Clear();
             int[] lineCounts = new int[3];
 
             // 3d lines
@@ -266,16 +301,13 @@ namespace TicTacToe3D
                 for (int r = 0; r < 3; r++)
                 {
                     // vertical lines
-                    if (Cells[0, c, r] == Cells[1, c, r] && Cells[0, c, r] == Cells[2, c, r])
-                        lineCounts[Cells[0, c, r]]++;
+                    lineCounts[Cells[0, c, r]] += CheckCells(new Cell(0, c, r), new Cell(1, c, r), new Cell(2, c, r));
 
                     // 3d diagonals
                     if (c % 2 == 0 && r % 2 == 0)
                     {
-                        if (Cells[0, c, r] == Cells[1, c, 1] && Cells[0, c, r] == Cells[2, c, 2 - r])
-                            lineCounts[Cells[0, c, r]]++;
-                        if (Cells[0, c, r] == Cells[1, 1, r] && Cells[0, c, r] == Cells[2, 2 - c, r])
-                            lineCounts[Cells[0, c, r]]++;
+                        lineCounts[Cells[0, c, r]] += CheckCells(new Cell(0, c, r), new Cell(1, c, 1), new Cell(2, c, 2 - r));
+                        lineCounts[Cells[0, c, r]] += CheckCells(new Cell(0, c, r), new Cell(1, 1, r), new Cell(2, 2 - c, r));
                     }
                 }
             }
@@ -284,29 +316,28 @@ namespace TicTacToe3D
             for (int p = 0; p < 3; p++)
             {
                 // diagonals
-                if (Cells[p, 0, 0] == Cells[p, 1, 1] && Cells[p, 0, 0] == Cells[p, 2, 2])
-                    lineCounts[Cells[p, 0, 0]]++;
-                if (Cells[p, 2, 0] == Cells[p, 1, 1] && Cells[p, 2, 0] == Cells[p, 0, 2])
-                    lineCounts[Cells[p, 2, 0]]++;
-
+                lineCounts[Cells[p, 0, 0]] += CheckCells(new Cell(p, 0, 0), new Cell(p, 1, 1), new Cell(p, 2, 2));
+                lineCounts[Cells[p, 2, 0]] += CheckCells(new Cell(p, 2, 0), new Cell(p, 1, 1), new Cell(p, 0, 2));
 
                 for (int c = 0; c < 3; c++)
                 {
                     // vertical lines
-                    if (Cells[p, c, 0] == Cells[p, c, 1] && Cells[p, c, 0] == Cells[p, c, 2])
-                        lineCounts[Cells[p, c, 0]]++;
+                    lineCounts[Cells[p, c, 0]] += CheckCells(new Cell(p, c, 0), new Cell(p, c, 1), new Cell(p, c, 2));
                 }
                 for (int r = 0; r < 3; r++)
                 {
                     // horizontal lines
-                    if (Cells[p, 0, r] == Cells[p, 1, r] && Cells[p, 0, r] == Cells[p, 2, r])
-                        lineCounts[Cells[p, 0, r]]++;
+                    lineCounts[Cells[p, 0, r]] += CheckCells(new Cell(p, 0, r), new Cell(p, 1, r), new Cell(p, 2, r));
                 }
             }
 
 
             ScoreX.Text = lineCounts[1].ToString();
             ScoreY.Text = lineCounts[2].ToString();
+
+            CompletedLines.AddRange(newCompletedLines);
+
+            return new List<WinningLine>(newCompletedLines);
         }
 
         public static bool IsFinished
