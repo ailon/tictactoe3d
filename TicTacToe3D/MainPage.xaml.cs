@@ -81,5 +81,10 @@ namespace TicTacToe3D
                 LayoutRoot.Children.Add(el);
             }
         }
+
+        private void FullScreenButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Host.Content.IsFullScreen = !Application.Current.Host.Content.IsFullScreen;
+        }
     }
 }
