@@ -84,6 +84,8 @@
       <Visible>false</Visible>
     </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Viewbox\StretchDirection.cs" />
+    <Compile Include="Viewbox\Viewbox.cs" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Properties\AppManifest.xml" />
