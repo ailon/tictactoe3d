@@ -61,7 +61,7 @@ namespace TicTacToe3D
 			bDown = false;
 		}
 
-		private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void NewGameButton_Click(object sender, System.Windows.RoutedEventArgs e)
 		{
             Game.Reset();
 		}

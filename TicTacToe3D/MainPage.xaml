@@ -62,7 +62,7 @@
             <TextBlock x:Name="ScoreX" Canvas.Left="769" Canvas.Top="88" Text="0" />
             <TextBlock x:Name="ScoreY" Canvas.Left="769" Canvas.Top="123" Text="0" />
 
-            <Button Width="119" Content="New game" Canvas.Left="663" Canvas.Top="458" Click="Button_Click"/>
+            <Button x:Name="NewGameButton" Width="119" Content="New game" Canvas.Left="663" Canvas.Top="458" Click="NewGameButton_Click"/>
             <TextBlock Text="Tic-Tac-Toe 3D" FontSize="36" Canvas.Left="537" Canvas.Top="8" />
         </Canvas>
     </toolkit:Viewbox>
