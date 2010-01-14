@@ -23,6 +23,8 @@ namespace TicTacToe3D
             Game.ScoreY = ScoreY;
             Game.FinalAnim = (Storyboard)Resources["RotateBoards"];
             Game.GameOver = GameOver;
+            Game.LineSound = LineSound;
+            Game.MoveSound = MoveSound;
         }
 
 		Point prevPoint;

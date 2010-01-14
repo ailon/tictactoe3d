@@ -40,6 +40,8 @@ namespace TicTacToe3D
         public static TextBlock GameOver;
         public static Storyboard FinalAnim;
         public static List<WinningLine> CompletedLines = new List<WinningLine>();
+        public static MediaElement LineSound;
+        public static MediaElement MoveSound;
         
         public static bool Move(int plane, int column, int row, int fig)
         {
@@ -57,6 +59,8 @@ namespace TicTacToe3D
                     Boards[plane].BC.Children.Add(l1);
                     Boards[plane].BC.Children.Add(l2);
                     AIMove();
+                    MoveSound.Stop();
+                    MoveSound.Play();
                 }
                 else
                 {
@@ -81,7 +85,7 @@ namespace TicTacToe3D
                     FinalAnim.Begin();
                     GameOver.Visibility = Visibility.Visible;
                 }
-                
+
                 return true;
             }
             else
@@ -273,6 +277,8 @@ namespace TicTacToe3D
             if (!CompletedLines.Contains(line) && cellContent > 0)
             {
                 newCompletedLines.Add(line);
+                LineSound.Stop();
+                LineSound.Play();
             }
         }
 

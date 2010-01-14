@@ -68,6 +68,8 @@
                           Click="FullScreenButton_Click"
                           />
             <TextBlock Text="Tic-Tac-Toe 3D" FontSize="36" Canvas.Left="537" Canvas.Top="8" />
+            <MediaElement x:Name="LineSound" Source="/3060_SpeedY_UFOblip.wma" AutoPlay="False"/>
+            <MediaElement x:Name="MoveSound" Source="/3066_SpeedY_basspulse.wma" AutoPlay="False"/>
         </Canvas>
     </toolkit:Viewbox>
 </UserControl>
