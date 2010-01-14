@@ -3,8 +3,9 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:t3="clr-namespace:TicTacToe3D"
     xmlns:toolkit="clr-namespace:System.Windows.Controls"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	x:Class="TicTacToe3D.MainPage"
-	Loaded="UserControl_Loaded">
+	Loaded="UserControl_Loaded" mc:Ignorable="d">
     <UserControl.Resources>
         <Storyboard x:Name="RotateBoards" RepeatBehavior="Forever">
             <DoubleAnimation Storyboard.TargetName="P0" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" By="360" Duration="00:00:04" />
@@ -25,7 +26,7 @@
                 </LinearGradientBrush>
             </Canvas.Background>
             <Canvas x:Name="BoardRoot" Width="500" Height="500" Background="Transparent" Canvas.ZIndex="100"
-			MouseLeftButtonDown="BoardRoot_MouseLeftButtonDown" MouseMove="BoardRoot_MouseMove" MouseLeftButtonUp="BoardRoot_MouseLeftButtonUp">
+			MouseLeftButtonDown="BoardRoot_MouseLeftButtonDown" MouseMove="BoardRoot_MouseMove" MouseLeftButtonUp="BoardRoot_MouseLeftButtonUp" d:IsLocked="True">
                 <Canvas x:Name="P0" Height="300" Width="300" Canvas.Left="100" Canvas.Top="100">
                     <Canvas.Projection>
                         <PlaneProjection CenterOfRotationZ="-150" RotationX="-45" RotationY="-45"/>
@@ -56,20 +57,89 @@
 				</TextBlock.Effect>
                 </TextBlock>
             </Canvas>
+            <Canvas x:Name="Iliuminator" Height="500" Width="800" IsHitTestVisible="False">
+            	<Rectangle Height="500" Width="800">
+            		<Rectangle.Fill>
+            			<RadialGradientBrush GradientOrigin="0.836,0.679" RadiusX="0.231" RadiusY="0.378" Center="0.753,0.604">
+            				<GradientStop Color="#4CFFFFFF"/>
+            				<GradientStop Color="Transparent" Offset="1"/>
+            			</RadialGradientBrush>
+            		</Rectangle.Fill>
+            	</Rectangle>
+            	<Path Stretch="Fill" Height="129.012" Width="800" UseLayoutRounding="False" Data="M0,0 L500,0 L500,117 C330.64816,173.38837 164.01707,172.64151 0,117 z">
+            		<Path.Fill>
+            			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            				<GradientStop Color="#4CFFFFFF" Offset="0"/>
+            				<GradientStop Color="Transparent" Offset="1"/>
+            			</LinearGradientBrush>
+            		</Path.Fill>
+            	</Path>
+            </Canvas>
+            <Canvas x:Name="Scoreboard" Height="173" Width="277" Canvas.Left="512" Canvas.Top="8">
+            	<Rectangle Fill="#3F3F0531" Stroke="#FFE0E0E0" RadiusX="5" RadiusY="5" Height="173" Width="277" StrokeThickness="3"/>
+            	<Rectangle Fill="#3FFFFFFF" Stroke="Black" RadiusX="5" RadiusY="5" Height="58" Width="262" Canvas.Left="8" Canvas.Top="8"/>
+            	<TextBlock Text="Tic-Tac-Toe 3D" FontSize="36" Canvas.Left="15" Canvas.Top="16" >
+            		<TextBlock.Effect>
+            			<DropShadowEffect/>
+            		</TextBlock.Effect>
+            	</TextBlock>
+            	<Rectangle Fill="#3F6FF3E1" Stroke="Black" RadiusX="5" RadiusY="5" Height="83" Width="95" Canvas.Left="8" Canvas.Top="81"/>
 
-            <TextBlock Text="YOU:" Canvas.Left="700" Canvas.Top="88" TextAlignment="Right" />
-            <TextBlock Text="CPU:" Canvas.Left="702" Canvas.Top="123" TextAlignment="Right" />
-            <TextBlock x:Name="ScoreX" Canvas.Left="769" Canvas.Top="88" Text="0" />
-            <TextBlock x:Name="ScoreY" Canvas.Left="769" Canvas.Top="123" Text="0" />
-
-            <Button x:Name="NewGameButton" Width="120" Content="New game" Canvas.Left="500" Canvas.Top="458" 
-                    Click="NewGameButton_Click"/>
-            <ToggleButton x:Name="FullScreenButton" Width="140" Content="Full screen" Canvas.Left="640" Canvas.Top="458"
-                          Click="FullScreenButton_Click"
-                          />
-            <TextBlock Text="Tic-Tac-Toe 3D" FontSize="36" Canvas.Left="537" Canvas.Top="8" />
+            	<TextBlock Text="YOU:" Canvas.Left="20" Canvas.Top="91" TextAlignment="Right" >
+            		<TextBlock.Effect>
+            			<DropShadowEffect/>
+            		</TextBlock.Effect>
+            	</TextBlock>
+            	<TextBlock Text="CPU:" Canvas.Left="22" Canvas.Top="126" TextAlignment="Right" >
+            		<TextBlock.Effect>
+            			<DropShadowEffect/>
+            		</TextBlock.Effect>
+            	</TextBlock>
+            	<Rectangle Fill="#3FFFFFFF" Stroke="Black" RadiusX="5" RadiusY="5" Height="83" Width="37" Canvas.Left="110" Canvas.Top="81"/>
+            	<TextBlock x:Name="ScoreX" Canvas.Left="123" Canvas.Top="91" Text="0" >
+            		<TextBlock.Effect>
+            			<DropShadowEffect/>
+            		</TextBlock.Effect>
+            	</TextBlock>
+            	<TextBlock x:Name="ScoreY" Canvas.Left="123" Canvas.Top="126" Text="0" >
+            		<TextBlock.Effect>
+            			<DropShadowEffect/>
+            		</TextBlock.Effect>
+            	</TextBlock>
+            	<Rectangle Fill="#3FFFFFFF" Stroke="Black" RadiusX="5" RadiusY="5" Height="83" Width="55" Canvas.Left="154" Canvas.Top="81"/>
+            	<TextBlock x:Name="ScoreX_Copy" Canvas.Left="164" Canvas.Top="91" Text="0" Width="36" TextAlignment="Right" >
+            		<TextBlock.Effect>
+            			<DropShadowEffect/>
+            		</TextBlock.Effect>
+            	</TextBlock>
+            	<TextBlock x:Name="ScoreY_Copy" Canvas.Left="164" Canvas.Top="126" Text="0" Width="36" TextAlignment="Right" >
+            		<TextBlock.Effect>
+            			<DropShadowEffect/>
+            		</TextBlock.Effect>
+            	</TextBlock>
+            	<Rectangle Fill="#3FFFFFFF" Stroke="Black" RadiusX="5" RadiusY="5" Height="83" Width="55" Canvas.Left="215" Canvas.Top="81"/>
+            	<TextBlock x:Name="ScoreX_Copy1" Canvas.Left="224" Canvas.Top="91" Text="0" Width="36" TextAlignment="Right" >
+            		<TextBlock.Effect>
+            			<DropShadowEffect/>
+            		</TextBlock.Effect>
+            	</TextBlock>
+            	<TextBlock x:Name="ScoreY_Copy1" Canvas.Left="224" Canvas.Top="126" Text="0" Width="36" TextAlignment="Right" >
+            		<TextBlock.Effect>
+            			<DropShadowEffect/>
+            		</TextBlock.Effect>
+            	</TextBlock>
+            	<TextBlock Canvas.Left="110" Canvas.Top="70" Text="CURRENT" TextWrapping="Wrap" FontSize="8" Foreground="#FF666D9B" FontFamily="Lucida Sans Unicode"/>
+            	<TextBlock Canvas.Left="169" Canvas.Top="70" FontSize="8" Foreground="#FF666D9B" Text="TOTAL" TextWrapping="Wrap" FontFamily="Lucida Sans Unicode"/>
+            	<TextBlock Canvas.Left="229" Canvas.Top="70" FontSize="8" Foreground="#FF666D9B" Text="GAMES" TextWrapping="Wrap" FontFamily="Lucida Sans Unicode"/>
+            </Canvas>
             <MediaElement x:Name="LineSound" Source="/3060_SpeedY_UFOblip.wma" AutoPlay="False"/>
             <MediaElement x:Name="MoveSound" Source="/3066_SpeedY_basspulse.wma" AutoPlay="False"/>
+
+            <Button x:Name="NewGameButton" Width="120" Content="New game" Canvas.Left="528" Canvas.Top="458" 
+                    Click="NewGameButton_Click"/>
+            <ToggleButton x:Name="FullScreenButton" Width="140" Content="Full screen" Canvas.Left="652" Canvas.Top="458"
+                          Click="FullScreenButton_Click"
+                          />
         </Canvas>
     </toolkit:Viewbox>
 </UserControl>
