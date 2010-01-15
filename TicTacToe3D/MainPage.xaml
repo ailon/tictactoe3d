@@ -87,7 +87,7 @@
         			</ControlTemplate>
         		</Setter.Value>
         	</Setter>
-        	<Setter Property="FontSize" Value="13.333"/>
+        	<Setter Property="FontSize" Value="16"/>
         </Style>
     </UserControl.Resources>
 
@@ -149,6 +149,22 @@
             		</Path.Fill>
             	</Path>
             </Canvas>
+            <Rectangle Stroke="Black" Height="500" Width="300" Canvas.Left="500" StrokeThickness="0">
+            	<Rectangle.Fill>
+            		<RadialGradientBrush RadiusX="1.082" RadiusY="0.664" GradientOrigin="0.602,-0.051">
+            			<GradientStop Color="#AB000000" Offset="0"/>
+            			<GradientStop Color="#3D000000" Offset="1"/>
+            		</RadialGradientBrush>
+            	</Rectangle.Fill>
+            </Rectangle>
+            <Path Stretch="Fill" Stroke="Black" StrokeThickness="0" Height="140" Width="300" IsHitTestVisible="False" UseLayoutRounding="False" Canvas.Left="500" Data="M0,0 L300,0 C289.47433,6.8065925 277.86139,21.520149 269,23.557144 C234.63036,31.457813 209.51009,8.0601082 145.9489,99.619705 C66,214.78572 48.649632,162.5399 0,194 z">
+            	<Path.Fill>
+            		<LinearGradientBrush EndPoint="0.379,1.117" StartPoint="-0.005,0.012">
+            			<GradientStop Color="#B8FFFFFF" Offset="0"/>
+            			<GradientStop Color="#07FFFFFF" Offset="0.763"/>
+            		</LinearGradientBrush>
+            	</Path.Fill>
+            </Path>
             <Canvas x:Name="Scoreboard" Height="173" Width="277" Canvas.Left="512" Canvas.Top="8">
             	<Rectangle Fill="#3F3F0531" Stroke="#FFE0E0E0" RadiusX="5" RadiusY="5" Height="173" Width="277" StrokeThickness="3"/>
             	<Rectangle Fill="#3FFFFFFF" Stroke="Black" RadiusX="5" RadiusY="5" Height="58" Width="262" Canvas.Left="8" Canvas.Top="8"/>
@@ -170,34 +186,34 @@
             		</TextBlock.Effect>
             	</TextBlock>
             	<Rectangle Fill="#3FFFFFFF" Stroke="Black" RadiusX="5" RadiusY="5" Height="83" Width="37" Canvas.Left="110" Canvas.Top="81"/>
-            	<TextBlock x:Name="ScoreX" Canvas.Left="123" Canvas.Top="91" Text="0" >
+            	<TextBlock x:Name="ScoreX" Canvas.Left="110" Canvas.Top="91" Text="0" Width="37" TextAlignment="Center" >
             		<TextBlock.Effect>
             			<DropShadowEffect/>
             		</TextBlock.Effect>
             	</TextBlock>
-            	<TextBlock x:Name="ScoreY" Canvas.Left="123" Canvas.Top="126" Text="0" >
+            	<TextBlock x:Name="ScoreY" Canvas.Left="110" Canvas.Top="126" Text="0" Width="37" TextAlignment="Center" >
             		<TextBlock.Effect>
             			<DropShadowEffect/>
             		</TextBlock.Effect>
             	</TextBlock>
             	<Rectangle Fill="#3FFFFFFF" Stroke="Black" RadiusX="5" RadiusY="5" Height="83" Width="55" Canvas.Left="154" Canvas.Top="81"/>
-            	<TextBlock x:Name="ScoreX_Copy" Canvas.Left="164" Canvas.Top="91" Text="0" Width="36" TextAlignment="Right" >
+            	<TextBlock x:Name="ScoreXTotal" Canvas.Left="164" Canvas.Top="91" Text="0" Width="36" TextAlignment="Right" >
             		<TextBlock.Effect>
             			<DropShadowEffect/>
             		</TextBlock.Effect>
             	</TextBlock>
-            	<TextBlock x:Name="ScoreY_Copy" Canvas.Left="164" Canvas.Top="126" Text="0" Width="36" TextAlignment="Right" >
+            	<TextBlock x:Name="ScoreYTotal" Canvas.Left="164" Canvas.Top="126" Text="0" Width="36" TextAlignment="Right" >
             		<TextBlock.Effect>
             			<DropShadowEffect/>
             		</TextBlock.Effect>
             	</TextBlock>
             	<Rectangle Fill="#3FFFFFFF" Stroke="Black" RadiusX="5" RadiusY="5" Height="83" Width="55" Canvas.Left="215" Canvas.Top="81"/>
-            	<TextBlock x:Name="ScoreX_Copy1" Canvas.Left="224" Canvas.Top="91" Text="0" Width="36" TextAlignment="Right" >
+            	<TextBlock x:Name="ScoreXGames" Canvas.Left="224" Canvas.Top="91" Text="0" Width="36" TextAlignment="Right" >
             		<TextBlock.Effect>
             			<DropShadowEffect/>
             		</TextBlock.Effect>
             	</TextBlock>
-            	<TextBlock x:Name="ScoreY_Copy1" Canvas.Left="224" Canvas.Top="126" Text="0" Width="36" TextAlignment="Right" >
+            	<TextBlock x:Name="ScoreYGames" Canvas.Left="224" Canvas.Top="126" Text="0" Width="36" TextAlignment="Right" >
             		<TextBlock.Effect>
             			<DropShadowEffect/>
             		</TextBlock.Effect>
@@ -208,12 +224,38 @@
             </Canvas>
             <MediaElement x:Name="LineSound" Source="/3060_SpeedY_UFOblip.wma" AutoPlay="False"/>
             <MediaElement x:Name="MoveSound" Source="/3066_SpeedY_basspulse.wma" AutoPlay="False"/>
+            <Path Stretch="Fill" Stroke="Black" StrokeThickness="0" Height="73" Width="300" UseLayoutRounding="False" Canvas.Left="500" Data="M0,0 L300,0 C289.47433,6.8065925 277.86139,21.520149 269,23.557144 C234.63036,31.457813 209.51009,8.0601082 145.9489,99.619705 C66,214.78572 48.649632,162.5399 0,194 z" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5" Canvas.Top="427">
+            	<Path.Fill>
+            		<LinearGradientBrush EndPoint="0.379,1.117" StartPoint="0.3,-0.842">
+            			<GradientStop Color="#B8FFFFFF"/>
+            			<GradientStop Color="#07FFFFFF" Offset="0.747"/>
+            		</LinearGradientBrush>
+            	</Path.Fill>
+            	<Path.RenderTransform>
+            		<TransformGroup>
+            			<ScaleTransform/>
+            			<SkewTransform/>
+            			<RotateTransform Angle="180"/>
+            			<TranslateTransform/>
+            		</TransformGroup>
+            	</Path.RenderTransform>
+            </Path>
 
             <Button x:Name="NewGameButton" Width="135" Content="New game" Canvas.Left="512" Canvas.Top="466" 
                     Click="NewGameButton_Click" Style="{StaticResource ButtonStyle}"/>
             <Button x:Name="FullScreenButton" Width="135" Content="Full screen" Canvas.Left="654" Canvas.Top="466"
                     Click="FullScreenButton_Click" Style="{StaticResource ButtonStyle}"
                     />
+            <Rectangle Stroke="Black" StrokeThickness="0" Height="500" Width="8" Canvas.Left="497">
+            	<Rectangle.Fill>
+            		<LinearGradientBrush EndPoint="1,1" StartPoint="0.072,1">
+            			<GradientStop Color="#FFE0EAEA" Offset="0.259"/>
+            			<GradientStop Color="#07B811F2" Offset="0.937"/>
+            			<GradientStop Color="#4BA600FF"/>
+            		</LinearGradientBrush>
+            	</Rectangle.Fill>
+            </Rectangle>
+            <TextBlock Height="236" Width="260" Canvas.Left="519" Canvas.Top="208" FontSize="16" TextWrapping="Wrap"><Run Text="Drag game board with your mouse to rotate it. Place X by clicking on a cell. Computer will place an O in response. "/><LineBreak/><Run Text=""/><LineBreak/><Run Text="The"/><Run Text=" objective is to align more lines of 3 (in all directions) than computer. Note that neither you nor computer can use the center cell of the middle board."/><LineBreak/><Run Text=""/><LineBreak/><Run Text="Good luck!"/></TextBlock>
         </Canvas>
     </toolkit:Viewbox>
 </UserControl>

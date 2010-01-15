@@ -21,6 +21,10 @@ namespace TicTacToe3D
             Game.Boards[2] = B2;
             Game.ScoreX = ScoreX;
             Game.ScoreY = ScoreY;
+            Game.ScoreXTotal = ScoreXTotal;
+            Game.ScoreYTotal = ScoreYTotal;
+            Game.ScoreXGames = ScoreXGames;
+            Game.ScoreYGames = ScoreYGames;
             Game.FinalAnim = (Storyboard)Resources["RotateBoards"];
             Game.GameOver = GameOver;
             Game.LineSound = LineSound;

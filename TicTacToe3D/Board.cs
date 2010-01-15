@@ -47,7 +47,10 @@ namespace TicTacToe3D
         {
             Point pos = e.GetPosition(BC);
 
-            Game.Move(Plane, (int)Math.Floor(pos.X / 100), (int)Math.Floor(pos.Y / 100), 1);
+            if (Game.Move(Plane, (int)Math.Floor(pos.X / 100), (int)Math.Floor(pos.Y / 100), 1))
+            {
+                Game.AIMove();
+            }
         }
 
         public void Clear()

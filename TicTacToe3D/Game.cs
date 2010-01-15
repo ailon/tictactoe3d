@@ -31,17 +31,30 @@ namespace TicTacToe3D
             ScoreY.Text = "0";
             GameOver.Visibility = Visibility.Collapsed;
             CompletedLines.Clear();
+            _over = false;
         }
 
         public static int[, ,] Cells;
         public static Board[] Boards = new Board[3];
         public static TextBlock ScoreX;
         public static TextBlock ScoreY;
+        public static TextBlock ScoreXTotal;
+        public static TextBlock ScoreYTotal;
+        public static TextBlock ScoreXGames;
+        public static TextBlock ScoreYGames;
+        private static int _xCurrent = 0;
+        private static int _yCurrent = 0;
+        private static int _xTotal = 0;
+        private static int _yTotal = 0;
+        private static int _xGames = 0;
+        private static int _yGames = 0;
         public static TextBlock GameOver;
         public static Storyboard FinalAnim;
         public static List<WinningLine> CompletedLines = new List<WinningLine>();
         public static MediaElement LineSound;
         public static MediaElement MoveSound;
+
+        private static bool _over = false;
         
         public static bool Move(int plane, int column, int row, int fig)
         {
@@ -58,7 +71,6 @@ namespace TicTacToe3D
                     Line l2 = new Line() { X1 = x + 60, Y1 = y, X2 = x, Y2 = y + 60, Stroke = new SolidColorBrush(Colors.Purple), StrokeThickness = 5 };
                     Boards[plane].BC.Children.Add(l1);
                     Boards[plane].BC.Children.Add(l2);
-                    AIMove();
                     MoveSound.Stop();
                     MoveSound.Play();
                 }
@@ -80,8 +92,23 @@ namespace TicTacToe3D
                     Boards[wl.Cell3.Plane].HighlightCell(wl.Cell3.Column, wl.Cell3.Row, color);
                 }
 
-                if (IsFinished)
+                if (IsFinished && !_over)
                 {
+                    _over = false;
+                    _xTotal += _xCurrent;
+                    _yTotal += _yCurrent;
+                    if (_xCurrent > _yCurrent)
+                    {
+                        _xGames++;
+                    }
+                    else if (_xCurrent < _yCurrent)
+                    {
+                        _yGames++;
+                    }
+                    ScoreXTotal.Text = _xTotal.ToString();
+                    ScoreYTotal.Text = _yTotal.ToString();
+                    ScoreXGames.Text = _xGames.ToString();
+                    ScoreYGames.Text = _yGames.ToString();
                     FinalAnim.Begin();
                     GameOver.Visibility = Visibility.Visible;
                 }
@@ -105,7 +132,7 @@ namespace TicTacToe3D
                 return false;
         }
 
-        static void AIMove()
+        public static void AIMove()
         {
             Random rnd = new Random();
 
@@ -337,9 +364,10 @@ namespace TicTacToe3D
                 }
             }
 
-
-            ScoreX.Text = lineCounts[1].ToString();
-            ScoreY.Text = lineCounts[2].ToString();
+            _xCurrent = lineCounts[1];
+            _yCurrent = lineCounts[2];
+            ScoreX.Text = _xCurrent.ToString();
+            ScoreY.Text = _yCurrent.ToString();
 
             CompletedLines.AddRange(newCompletedLines);
 
