@@ -15,6 +15,80 @@
             <DoubleAnimation Storyboard.TargetName="P2" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" By="360" Duration="00:00:04" />
             <DoubleAnimation Storyboard.TargetName="P2" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" By="360" Duration="00:00:04" />
         </Storyboard>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+        	<Setter Property="Background" Value="#FF1F3B53"/>
+        	<Setter Property="Foreground" Value="#FFE0E0E0"/>
+        	<Setter Property="Padding" Value="3"/>
+        	<Setter Property="BorderThickness" Value="1"/>
+        	<Setter Property="BorderBrush">
+        		<Setter.Value>
+        			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        				<GradientStop Color="#FFA3AEB9" Offset="0"/>
+        				<GradientStop Color="#FF8399A9" Offset="0.375"/>
+        				<GradientStop Color="#FF718597" Offset="0.375"/>
+        				<GradientStop Color="#FF617584" Offset="1"/>
+        			</LinearGradientBrush>
+        		</Setter.Value>
+        	</Setter>
+        	<Setter Property="Template">
+        		<Setter.Value>
+        			<ControlTemplate TargetType="Button">
+        				<Grid x:Name="grid">
+        					<Grid.Effect>
+        						<DropShadowEffect ShadowDepth="0"/>
+        					</Grid.Effect>
+        					<VisualStateManager.VisualStateGroups>
+        						<VisualStateGroup x:Name="CommonStates">
+        							<VisualStateGroup.Transitions>
+        								<VisualTransition GeneratedDuration="00:00:00.3000000"/>
+        							</VisualStateGroup.Transitions>
+        							<VisualState x:Name="Normal"/>
+        							<VisualState x:Name="MouseOver">
+        								<Storyboard>
+        									<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="grid" Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.ShadowDepth)">
+        										<EasingDoubleKeyFrame KeyTime="00:00:00" Value="3"/>
+        									</DoubleAnimationUsingKeyFrames>
+        									<ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="grid" Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Color)">
+        										<EasingColorKeyFrame KeyTime="00:00:00" Value="#FF787878"/>
+        									</ColorAnimationUsingKeyFrames>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="Pressed">
+        								<Storyboard>
+        									<ColorAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+        										<SplineColorKeyFrame KeyTime="0" Value="#FF6DBDD1"/>
+        									</ColorAnimationUsingKeyFrames>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="Disabled">
+        								<Storyboard>
+        									<DoubleAnimationUsingKeyFrames Storyboard.TargetName="DisabledVisualElement" Storyboard.TargetProperty="Opacity">
+        										<SplineDoubleKeyFrame KeyTime="0" Value=".55"/>
+        									</DoubleAnimationUsingKeyFrames>
+        								</Storyboard>
+        							</VisualState>
+        						</VisualStateGroup>
+        						<VisualStateGroup x:Name="FocusStates">
+        							<VisualState x:Name="Focused">
+        								<Storyboard>
+        									<DoubleAnimationUsingKeyFrames Storyboard.TargetName="FocusVisualElement" Storyboard.TargetProperty="Opacity">
+        										<SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+        									</DoubleAnimationUsingKeyFrames>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="Unfocused"/>
+        						</VisualStateGroup>
+        					</VisualStateManager.VisualStateGroups>
+        					<Border x:Name="Background" Background="#3F3F0531" CornerRadius="3" BorderBrush="#FFE0E0E0" BorderThickness="3"/>
+        					<ContentPresenter x:Name="contentPresenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Margin="10,5"/>
+        					<Rectangle x:Name="DisabledVisualElement" Fill="#FFFFFFFF" RadiusX="3" RadiusY="3" IsHitTestVisible="false" Opacity="0"/>
+        					<Rectangle x:Name="FocusVisualElement" Stroke="#FF6DBDD1" StrokeThickness="1" RadiusX="2" RadiusY="2" Margin="1" IsHitTestVisible="false" Opacity="0"/>
+        				</Grid>
+        			</ControlTemplate>
+        		</Setter.Value>
+        	</Setter>
+        	<Setter Property="FontSize" Value="13.333"/>
+        </Style>
     </UserControl.Resources>
 
     <toolkit:Viewbox Stretch="Uniform" FontFamily="Trebuchet MS" Foreground="#FFE0E0E0" FontSize="24">
@@ -135,11 +209,11 @@
             <MediaElement x:Name="LineSound" Source="/3060_SpeedY_UFOblip.wma" AutoPlay="False"/>
             <MediaElement x:Name="MoveSound" Source="/3066_SpeedY_basspulse.wma" AutoPlay="False"/>
 
-            <Button x:Name="NewGameButton" Width="120" Content="New game" Canvas.Left="528" Canvas.Top="458" 
-                    Click="NewGameButton_Click"/>
-            <ToggleButton x:Name="FullScreenButton" Width="140" Content="Full screen" Canvas.Left="652" Canvas.Top="458"
-                          Click="FullScreenButton_Click"
-                          />
+            <Button x:Name="NewGameButton" Width="135" Content="New game" Canvas.Left="512" Canvas.Top="466" 
+                    Click="NewGameButton_Click" Style="{StaticResource ButtonStyle}"/>
+            <Button x:Name="FullScreenButton" Width="135" Content="Full screen" Canvas.Left="654" Canvas.Top="466"
+                    Click="FullScreenButton_Click" Style="{StaticResource ButtonStyle}"
+                    />
         </Canvas>
     </toolkit:Viewbox>
 </UserControl>

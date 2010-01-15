@@ -87,6 +87,7 @@ namespace TicTacToe3D
         private void FullScreenButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Host.Content.IsFullScreen = !Application.Current.Host.Content.IsFullScreen;
+			FullScreenButton.Content = Application.Current.Host.Content.IsFullScreen ? "Exit Full Screen" : "Full Screen";
         }
     }
 }
