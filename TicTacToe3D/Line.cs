@@ -9,7 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace TicTacToe3D
+namespace Ailon.TicTacToe3D
 {
     public class WinningLine
     {

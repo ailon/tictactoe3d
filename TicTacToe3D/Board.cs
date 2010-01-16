@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Media.Animation;
 
-namespace TicTacToe3D
+namespace Ailon.TicTacToe3D
 {
 	public class Board : Control
 	{

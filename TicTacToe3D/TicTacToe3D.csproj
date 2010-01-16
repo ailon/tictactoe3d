@@ -8,18 +8,18 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <DefaultClrNameSpace>TicTacToe3D</DefaultClrNameSpace>
-    <RootNamespace>TicTacToe3D</RootNamespace>
-    <AssemblyName>TicTacToe3D</AssemblyName>
+    <RootNamespace>Ailon.TicTacToe3D</RootNamespace>
+    <AssemblyName>Ailon.TicTacToe3D</AssemblyName>
     <ApplicationVersion>1.0.0.*</ApplicationVersion>
     <ApplicationRevision>0</ApplicationRevision>
     <AlwaysCompileMarkupFilesInSeparateDomain>false</AlwaysCompileMarkupFilesInSeparateDomain>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <SilverlightApplication>true</SilverlightApplication>
     <XapOutputs>true</XapOutputs>
-    <XapFilename>TicTacToe3D.xap</XapFilename>
+    <XapFilename>Ailon.TicTacToe3D.xap</XapFilename>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
-    <SilverlightAppEntry>TicTacToe3D.App</SilverlightAppEntry>
+    <SilverlightAppEntry>Ailon.TicTacToe3D.App</SilverlightAppEntry>
     <CreateTestPage>true</CreateTestPage>
     <ValidateXaml>true</ValidateXaml>
     <UsePlatformExtensions>false</UsePlatformExtensions>
